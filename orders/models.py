@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 def auto_generate_order_code():
-    generated_order_code = randint(1000000000, 9999999999)
+    generated_order_code = str(randint(1000000000, 9999999999))
     if Order.objects.filter(code=generated_order_code).count() == 0:
         return generated_order_code
     else:
@@ -15,7 +15,7 @@ def auto_generate_order_code():
 
 
 class Order(models.Model):
-    code = models.PositiveIntegerField(default=auto_generate_order_code)
+    code = models.CharField(default=auto_generate_order_code, max_length=15)
     date = models.DateTimeField(auto_now=True)
     status_code = (
         ('1', 'submitted'),
@@ -25,6 +25,13 @@ class Order(models.Model):
     )
     status = models.CharField(choices=status_code, default='1', max_length=15)
     note = models.TextField(max_length=200, null=True, blank=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+
+class OrderRow(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
 
 
 class OrderHistory(models.Model):
@@ -37,3 +44,4 @@ class DiscountCode(models.Model):
     percent = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)])
     start = models.DateTimeField()
     end = models.DateTimeField()
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
