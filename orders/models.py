@@ -6,6 +6,14 @@ from products.models import Product
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
+def auto_generate_order_code():
+    generated_order_code = randint(1000000000, 9999999999)
+    if Order.objects.filter(code=generated_order_code).count() == 0:
+        return generated_order_code
+    else:
+        auto_generate_order_code()
+
+
 class Order(models.Model):
     code = models.PositiveIntegerField(default=auto_generate_order_code)
     date = models.DateTimeField(auto_now=True)
@@ -17,3 +25,6 @@ class Order(models.Model):
     )
     status = models.CharField(choices=status_code, default='1', max_length=15)
     note = models.TextField(max_length=200, null=True, blank=True)
+
+
+
