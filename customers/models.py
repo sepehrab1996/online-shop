@@ -9,3 +9,10 @@ class ShopUser(User):
     profile_image = models.ImageField(upload_to='profile_image', default=None, null=True)
 
 
+class Customer(ShopUser):
+    is_customer = True
+    address = models.OneToOneField("Address", on_delete=models.CASCADE)
+    discount_code = models.ForeignKey(DiscountCode, on_delete=models.CASCADE)
+
+
+
