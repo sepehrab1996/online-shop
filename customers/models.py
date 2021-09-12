@@ -15,4 +15,11 @@ class Customer(ShopUser):
     discount_code = models.ForeignKey(DiscountCode, on_delete=models.CASCADE)
 
 
+class Employee(ShopUser):
+    is_employee = True
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    job_title = models.CharField(max_length=100)
+    hire_date = models.DateField()
+
+
 
