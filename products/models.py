@@ -11,4 +11,5 @@ class Product(models.Model):
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
 
 
-
+class Category(models.Model):
+    name = models.CharField(max_length=100, unique=True)
