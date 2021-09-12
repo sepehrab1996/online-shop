@@ -1,3 +1,19 @@
-from django.db import models
+from random import randint
 
-# Create your models here.
+from django.db import models
+from customers.models import Customer
+from products.models import Product
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+
+class Order(models.Model):
+    code = models.PositiveIntegerField(default=auto_generate_order_code)
+    date = models.DateTimeField(auto_now=True)
+    status_code = (
+        ('1', 'submitted'),
+        ('2', 'canceled'),
+        ('3', 'sent'),
+        # ('4', 'delivered')
+    )
+    status = models.CharField(choices=status_code, default='1', max_length=15)
+    note = models.TextField(max_length=200, null=True, blank=True)
