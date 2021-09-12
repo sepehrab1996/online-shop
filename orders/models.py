@@ -32,4 +32,8 @@ class OrderHistory(models.Model):
     order = models.ForeignKey(Order, on_delete=models.RESTRICT)
 
 
-
+class DiscountCode(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    percent = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)])
+    start = models.DateTimeField()
+    end = models.DateTimeField()
