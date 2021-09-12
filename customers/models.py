@@ -1,18 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
-from orders.models import DiscountCode
+from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 
 class ShopUser(User):
-    identity_code = models.PositiveBigIntegerField(unique=True)
-    phone_number = models.TextField(max_length=20, unique=True)
-    profile_image = models.ImageField(upload_to='profile_image', default=None, null=True)
+    identity_code = models.PositiveBigIntegerField(unique=True,
+                                                   validators=[MinLengthValidator(9), MaxLengthValidator(10)])
+    phone_number = models.TextField(max_length=15, unique=True)
+
+
+class ShopUserImage(models.Model):
+    shop_user = models.ForeignKey(ShopUser, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_image', default=None, null=True)
 
 
 class Customer(ShopUser):
     is_customer = True
-    address = models.OneToOneField("Address", on_delete=models.CASCADE)
-    discount_code = models.ForeignKey(DiscountCode, on_delete=models.CASCADE)
 
 
 class Employee(ShopUser):
@@ -23,6 +26,7 @@ class Employee(ShopUser):
 
 
 class Address(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     country = models.CharField(max_length=30)
     province = models.CharField(max_length=30)
     city = models.CharField(max_length=30)
