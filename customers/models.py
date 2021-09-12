@@ -22,4 +22,11 @@ class Employee(ShopUser):
     hire_date = models.DateField()
 
 
-
+class Address(models.Model):
+    country = models.CharField(max_length=30)
+    province = models.CharField(max_length=30)
+    city = models.CharField(max_length=30)
+    street = models.CharField(max_length=30)
+    alley = models.CharField(max_length=30)
+    no = models.PositiveIntegerField()
+    postal_code = models.PositiveBigIntegerField()
