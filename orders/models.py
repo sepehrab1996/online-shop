@@ -27,4 +27,9 @@ class Order(models.Model):
     note = models.TextField(max_length=200, null=True, blank=True)
 
 
+class OrderHistory(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
+    order = models.ForeignKey(Order, on_delete=models.RESTRICT)
+
+
 
