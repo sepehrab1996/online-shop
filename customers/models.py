@@ -9,13 +9,13 @@ class ShopUser(User):
     phone_number = models.TextField(max_length=15, unique=True)
 
 
-class ShopUserImage(models.Model):
-    shop_user = models.ForeignKey(ShopUser, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_image', default=None, null=True)
-
-
 class Customer(ShopUser):
     is_customer = True
+
+
+class CustomerImage(models.Model):
+    customer = models.ForeignKey(Customer, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_image/customers', default=None, null=True)
 
 
 class Employee(ShopUser):
@@ -23,6 +23,11 @@ class Employee(ShopUser):
     salary = models.DecimalField(max_digits=10, decimal_places=2)
     job_title = models.CharField(max_length=100)
     hire_date = models.DateField()
+
+
+class EmployeeImage(models.Model):
+    Employee = models.ForeignKey(Employee, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_image/employees', default=None, null=True)
 
 
 class Address(models.Model):
