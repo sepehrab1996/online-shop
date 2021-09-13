@@ -16,7 +16,12 @@ class ShopUser(User):
         ('FEMALE', 'Female'),
     )
     gender = models.CharField(choices=gender_choices, max_length=20)
-    phone_number = models.CharField(max_length=15, unique=True)
+    phone_number = models.CharField(max_length=13, unique=True, validators=[
+        RegexValidator(
+            regex=r"^(\+98?)?{?(0?9[0-9]{9,9}}?)$",
+            message='Phone number is invalid',
+            code='invalid_phone_number'
+        )])
 
 
 class Customer(ShopUser):
