@@ -1,10 +1,11 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    weight = models.PositiveIntegerField(default=None)
+    weight = models.PositiveIntegerField(default=None, validators=[MinValueValidator(100), MaxValueValidator(10000)])
     inventory = models.PositiveIntegerField(default=0)
     color = models.CharField(max_length=30)
     price = models.DecimalField(max_digits=10, decimal_places=2)
