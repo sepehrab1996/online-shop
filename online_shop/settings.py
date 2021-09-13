@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'online_shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'educational_system',
+        'NAME': 'online_shop',
         'USER': 'postgres',
         'PASSWORD': '09382282100',
         'HOST': '127.0.0.1',
