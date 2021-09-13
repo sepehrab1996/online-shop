@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 /media/product_image/*
-/media/profile_image/*
-
+/media/profile_image/customers/*
+/media/profile_image/employees/*
