@@ -12,7 +12,7 @@ class ShopUser(User):
         ('FEMALE', 'Female'),
     )
     gender = models.CharField(choices=gender_choices, max_length=20)
-    phone_number = models.TextField(max_length=15, unique=True)
+    phone_number = models.CharField(max_length=15, unique=True)
 
 
 class Customer(ShopUser):
@@ -50,7 +50,6 @@ class Employee(ShopUser):
     class Meta:
         verbose_name = 'Employee'
         verbose_name_plural = 'Employees'
-
 
 class EmployeeImage(models.Model):
     employee = models.ForeignKey(Employee, related_name='images', on_delete=models.CASCADE)
