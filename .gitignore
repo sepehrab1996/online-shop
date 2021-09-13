@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/media/product_image/*
+/media/profile_image/*
+
