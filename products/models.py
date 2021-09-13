@@ -6,12 +6,13 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     weight = models.PositiveIntegerField(default=None)
     inventory = models.PositiveIntegerField(default=0)
+    color = models.CharField(max_length=30)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(max_length=200, null=True, blank=True)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.name} ${self.price}'
+        return f'{self.name} ({self.color}) ${self.price}'
 
 
 class ProductImage(models.Model):
@@ -19,7 +20,7 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to='product_image', default=None, null=True)
 
     def __str__(self):
-        return f'{self.product.name} image'
+        return f'{self.product.name} ({self.product.color}) image'
 
 
 class Category(MPTTModel):
