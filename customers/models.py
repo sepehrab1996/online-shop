@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator
+from django.core.validators import MinValueValidator, RegexValidator
 
 
 class ShopUser(User):
     identity_code = models.CharField(max_length=10, unique=True, validators=[
-        RegexValidators(
-            regex='\b[0-9]{10}\b',
+        RegexValidator(
+            regex=r"^\d{10}$",
             message='entity code must be 10 digits',
             code='invalid_entity_code'
         )])
