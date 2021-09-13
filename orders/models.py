@@ -30,6 +30,10 @@ class Order(models.Model):
     def __str__(self):
         return f'order code: {self.code}, status: {self.status}'
 
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'
+
 
 class OrderRow(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
@@ -39,6 +43,10 @@ class OrderRow(models.Model):
     def __str__(self):
         return f'a row from order No. {self.order.code}'
 
+    class Meta:
+        verbose_name = 'Order row'
+        verbose_name_plural = 'Order rows'
+
 
 class OrderHistory(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
@@ -46,6 +54,10 @@ class OrderHistory(models.Model):
 
     def __str__(self):
         return f'order No. {self.order.code} for {self.customer.first_name} {self.customer.last_name}'
+
+    class Meta:
+        verbose_name = 'Order history'
+        verbose_name_plural = 'Orders history'
 
 
 class DiscountCode(models.Model):
@@ -57,3 +69,7 @@ class DiscountCode(models.Model):
 
     def __str__(self):
         return f'discount code for {self.customer.first_name} {self.customer.last_name}'
+
+    class Meta:
+        verbose_name = 'Discount code'
+        verbose_name_plural = 'Discount codes'
