@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator
+from django.core.validators import MinValueValidator
 
 
 class ShopUser(User):
-    identity_code = models.PositiveBigIntegerField(unique=True,
-                                                   validators=[MinLengthValidator(9), MaxLengthValidator(10)])
+    identity_code = models.PositiveBigIntegerField(unique=True)
     age = models.PositiveIntegerField(validators=[MinValueValidator(5)])
     gender_choices = (
         ('MALE', 'Male'),
