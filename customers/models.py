@@ -1,18 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidators
 
 
 class ShopUser(User):
-    identity_code = models.PositiveBigIntegerField(unique=True,
-                                                   validators=[MinLengthValidator(9), MaxLengthValidator(10)])
+    identity_code = models.CharField(max_length=10, unique=True, validators=[
+        RegexValidators(
+            regex='\b[0-9]{10}\b',
+            message='Identity code must be 10 digits',
+            code='invalid_identity_code'
+        )])
     age = models.PositiveIntegerField(validators=[MinValueValidator(5)])
     gender_choices = (
         ('MALE', 'Male'),
         ('FEMALE', 'Female'),
     )
     gender = models.CharField(choices=gender_choices, max_length=20)
-    phone_number = models.TextField(max_length=15, unique=True)
+    phone_number = models.CharField(max_length=15, unique=True)
 
 
 class Customer(ShopUser):
