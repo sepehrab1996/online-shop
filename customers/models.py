@@ -21,6 +21,10 @@ class Customer(ShopUser):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    class Meta:
+        verbose_name = 'Customer'
+        verbose_name_plural = 'Customers'
+
 
 class CustomerImage(models.Model):
     customer = models.ForeignKey(Customer, related_name='images', on_delete=models.CASCADE)
@@ -28,6 +32,10 @@ class CustomerImage(models.Model):
 
     def __str__(self):
         return f'{self.customer.first_name} {self.customer.last_name} profile image'
+
+    class Meta:
+        verbose_name = 'Customer image'
+        verbose_name_plural = 'Customer images'
 
 
 class Employee(ShopUser):
@@ -39,6 +47,10 @@ class Employee(ShopUser):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    class Meta:
+        verbose_name = 'Employee'
+        verbose_name_plural = 'Employees'
+
 
 class EmployeeImage(models.Model):
     employee = models.ForeignKey(Employee, related_name='images', on_delete=models.CASCADE)
@@ -46,6 +58,10 @@ class EmployeeImage(models.Model):
 
     def __str__(self):
         return f'{self.employee.first_name} {self.employee.last_name} profile image'
+
+    class Meta:
+        verbose_name = 'Employee image'
+        verbose_name_plural = 'Employee images'
 
 
 class Address(models.Model):
@@ -60,3 +76,7 @@ class Address(models.Model):
 
     def __str__(self):
         return f'{self.customer.first_name} {self.customer.last_name} address'
+
+    class Meta:
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
