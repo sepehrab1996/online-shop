@@ -14,6 +14,10 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} ({self.color}) ${self.price}'
 
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
@@ -21,6 +25,10 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return f'{self.product.name} ({self.product.color}) image'
+
+    class Meta:
+        verbose_name = 'Product image'
+        verbose_name_plural = 'Product images'
 
 
 class Category(MPTTModel):
@@ -32,3 +40,7 @@ class Category(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['name']
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
