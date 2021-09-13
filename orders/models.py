@@ -27,16 +27,25 @@ class Order(models.Model):
     note = models.TextField(max_length=200, null=True, blank=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'order code: {self.code}, status: {self.status}'
+
 
 class OrderRow(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
+    def __str__(self):
+        return f'a row from order No. {self.order.code}'
+
 
 class OrderHistory(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
     order = models.ForeignKey(Order, on_delete=models.RESTRICT)
+
+    def __str__(self):
+        return f'order No. {self.order.code} for {self.customer.first_name} {self.customer.last_name}'
 
 
 class DiscountCode(models.Model):
@@ -45,3 +54,6 @@ class DiscountCode(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'discount code for {self.customer.first_name} {self.customer.last_name}'
