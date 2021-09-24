@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'orders.apps.OrdersConfig',
     'mptt',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
