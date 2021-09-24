@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'mptt',
     'rest_framework',
+    'knox',
 ]
 
 MIDDLEWARE = [
