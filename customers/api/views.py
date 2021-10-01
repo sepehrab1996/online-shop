@@ -4,7 +4,7 @@ from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from customers.models import CustomerImage, Customer
-from customers.api.serializers import CustomerRegisterSerializer
+from customers.api.serializers import CustomerSerializer, CustomerRegisterSerializer
 
 
 # class CustomerImageDetail(APIView):
