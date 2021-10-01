@@ -2,14 +2,14 @@ from rest_framework import serializers
 from customers.models import Customer, CustomerImage
 
 
-# class CustomerSerializer(serializers.ModelSerializer):
-#     images = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='api-customer-image-detail')
-#
-#     class Meta:
-#         model = Customer
-#         exclude = ('last_login', 'is_superuser', 'is_staff', 'is_active', 'date_joined', 'groups', 'user_permissions')
-#
-#
+class CustomerSerializer(serializers.ModelSerializer):
+    images = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='api-customer-image-detail')
+
+    class Meta:
+        model = Customer
+        exclude = ('last_login', 'is_superuser', 'is_staff', 'is_active', 'date_joined', 'groups', 'user_permissions')
+
+
 # class CustomerImageSerializer(serializers.ModelSerializer):
 #     customer = serializers.ReadOnlyField(source='customer.username')
 #
