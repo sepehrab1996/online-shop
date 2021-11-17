@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% block heder %}
+    <!-- Header-->
+    <!-- slide show-->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/media/header_site.jpg" class="d-block w-100" alt="...">
+            </div>
+            {% for advertising in advertisings %}
+                <div class="carousel-item">
+                    <img src="{{ advertising.image.url }}" class="d-block w-100" alt="...">
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block content %}
+    <!-- Section-->
+    <!-- display of products-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div id="block_image"
+                 class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <!--  Products are located here-->
+            </div>
+
+             <nav  id="results" aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <!-- button of pagination-->
+                    </ul>
+                </nav>
+        </div>
+
+    </section>
+
+{% endblock %}

@@ -11,4 +11,6 @@ build/
 .idea/
 *.swp
 *~
+media/products/*
+media/profiles/*
 

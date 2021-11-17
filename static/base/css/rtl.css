@@ -1,0 +1,30 @@
+@import url(fonts.css);
+
+
+body {
+     font-family: "Yekan", "Vazir", "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif!important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.btn-show-pass {
+    right: initial !important;
+    left: 0 !important;
+}
+
+
+.dropdown-menu .dropdown-submenu-left {
+    left: 100% !important;
+    right: auto !important;
+}
+
+.close-detail {
+    margin: inherit !important;
+}
+
+
+.dropdown-menu.show {
+    right: 0;
+    left: auto;
+    text-align: center;
+}

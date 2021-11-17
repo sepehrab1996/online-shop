@@ -1,0 +1,180 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}{% translate 'Profile' %}{% endblock %}
+
+{% block style.css %}
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'auth/css/profile.css' %}">
+    <!--===============================================================================================-->
+{% endblock %}
+{% block drop-drown %}{% endblock %}
+{% block content %}
+    <div class=" emp-profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img ">
+                    {% if user.image %}
+                        <img class="rounded-circle"
+                             src="{{ user.image.url }}"
+                             alt=""/>
+                    {% else %}
+                        <img class="rounded-circle"
+                             src="/media/avatar.jpg/"
+                             alt=""/>
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{ user.username }}
+                    </h5>
+                    <h6>
+                    </h6>
+                    <p class="proile-rating">{% translate 'Last login' %} : </p> <span>{{ user.last_login }}</span>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                               aria-controls="home" aria-selected="true">
+                                {% translate 'About' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="false">{% translate 'Adresses' %}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-3">
+                <a type="submit" href="{% url 'customer:edit_profile' %}"
+                   style="margin: 2px;font-size: revert;"
+                   class="btn btn-outline-primary w-75 ml-4 ">{% translate 'Edit Profile' %}</a>
+                <br/>
+                <a type="submit" href="{% url 'orders:recent-orders' %}" style="margin: 2px;font-size: revert;"
+                   class="btn btn-outline-primary w-75 ml-4">{% translate 'Recent orders' %}</a>
+                <br/>
+                <a type="submit" href="{% url 'orders:orders-history' %}" style="margin: 2px;font-size: revert;"
+                   class="btn btn-outline-primary w-75 ml-4 ">{% translate 'Order history' %}</a>
+                <a type="submit" href="{% url 'customer:change_password' %}"
+                   style="margin: 2px;font-size: revert;"
+                   class="btn btn-outline-primary w-75 ml-4 ">{% translate 'Change password' %}</a>
+                <br/>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>{% translate 'first name' %}</label>
+                            </div>
+                            <div class="col-md-6">
+                                {% if user.first_name %}
+                                    <p>{{ user.first_name }} </p>
+                                {% else %}
+                                    <p>----------</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>{% translate 'last name' %}</label>
+                            </div>
+                            <div class="col-md-6">
+                                {% if  user.last_name %}
+                                    <p> {{ user.last_name }}</p>
+                                {% else %}
+                                    <p>----------</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>{% translate 'Email' %}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                        <table class="table table-bordered " style="text-align: center">
+                            <thead class="bg-primary text-white">
+                            <tr>
+                                <th>#</th>
+                                <th>{% translate 'Address' %}</th>
+                                <th>{% translate 'Edit' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for address in customer.addresses.all %}
+                                <tr>
+                                    <th class="bg-primary text-white" scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ address.exact_address }}</td>
+                                    <td><a class="btn btn-outline-primary"
+                                           href="{% url 'customer:remove_address' address.id %}">{% translate 'Remove Address' %}</a>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                        <a type="submit" href="" class="btn btn-outline-primary  ml-4 " data-toggle="modal"
+                           data-target="#modal-add-address">{% translate 'Add Address' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- large modal -->
+    <div class="modal fade" id="modal-add-address" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">{% translate 'Add Address' %}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'customer:add_address' %}" class="mt-5">
+                        {% csrf_token %}
+                        <label for="persian_address">{% translate 'persian adress' %}</label>
+                        <input type="text" class="form-control" id="persian_address" name="persian_address"
+                               placeholder="{% translate 'Enter exact address' %}">
+                        <label for="english_address">{% translate 'english adress' %}</label>
+                        <input type="text" class="form-control" id="english_address" name="english_address"
+                               placeholder="{% translate 'Enter exact address' %}">
+                        <input type="hidden" id="customer_id" name="customer_id" value="{{ customer.id }}">
+
+                        <button type="submit"
+                                class="btn btn-primary mt-2">{% translate 'Add address' %}</button>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-outline-danger " data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
