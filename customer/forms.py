@@ -35,7 +35,7 @@ class CustomerChangePassword(forms.Form):
 class EditProfileForm(forms.ModelForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
-    image=forms.ImageField(widget=forms.FileInput,required=False)
+    image = forms.ImageField(widget=forms.FileInput, required=False)
 
     class Meta:
         model = Customer

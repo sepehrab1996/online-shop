@@ -38,7 +38,7 @@ def product_by_category(request, pk):
 
 class ProductDetailView(View):
     """
-     View for Customers See Product Detials and buy it
+     View for Customers See Product Details and buy it
     """
 
     def get(self, request, pk, *args, **kwargs):
