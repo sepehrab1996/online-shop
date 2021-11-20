@@ -27,12 +27,12 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'base/css/base.css' %}" rel="stylesheet"/>
 </head>
-<body style="background-color: #f2f2f3; ">
+<body style="background-color: white; ">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand bi bi-house-door-fill " aria-current="page"
-           href="{% url 'products:index' %}">{% translate "MAKTABSHARIF-53 SHOP" %}</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark p-0">
+    <div class="container">
+        <a class="navbar-brand bi bi-house-door text-light" style="font-size: 70px" aria-current="page"
+           href="{% url 'products:index' %}">{% translate "" %}</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
@@ -41,31 +41,31 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <!--Search-->
-                <div class="">
+                <div>
                     <div class="input-group">
                         <input type="search" class="form-control rounded" placeholder="{% translate 'Search' %}"
                                aria-label="{% translate 'Search' %}"
                                aria-describedby="search-addon"/>
-                        <button type="button" class="btn btn-outline-dark">{% translate 'Search' %}</button>
+                        <button type="button" class="btn btn-outline-light ml-1 rounded">{% translate 'Search' %}</button>
                     </div>
                 </div>
             </ul>
 
             {% if user.is_authenticated %}
-                    <a class="btn btn-outline-dark"  href="{% url 'orders:cart_detail' %}" >
+                    <a class="btn btn-outline-light"  href="{% url 'orders:cart_detail' %}" >
                         <i class="bi-cart-fill me-1"></i>
                         {% translate 'Cart' %}
                         <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
                     </a>
             {% else %}
-                     <a class="btn btn-outline-dark"  href="{% url 'orders:cart_detail' %}" >
+                     <a class="btn btn-outline-light"  href="{% url 'orders:cart_detail' %}" >
                         <i class="bi-cart-fill me-1"></i>
                         {% translate 'Cart' %}
                         <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
                     </a>
             {% endif %}
             <div class=" dropdown m-2 ">
-                <button class=" dropdown-toggle  btn btn-outline-dark" id="navbarDropdown" href="#"
+                <button class=" dropdown-toggle  btn btn-outline-light" id="navbarDropdown" href="#"
                         role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">{% translate 'Categories' %} </button>
                 {% category %}
@@ -76,7 +76,7 @@
             {% block drop-drown %}
                 {% if user.is_authenticated %}
                     <div class=" dropdown m-2 ">
-                        <button class=" dropdown-toggle bi-person btn btn-outline-dark" id="navbarDropdown" href="#"
+                        <button class=" dropdown-toggle bi-person btn btn-outline-light" id="navbarDropdown" href="#"
                                 role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"></button>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -98,13 +98,13 @@
                     </div>
                 {% else %}
                     <form action="{% url 'customer:login' %}">
-                        <input class="btn btn-outline-dark m-1" type="submit" value="{% translate 'Login' %}"/>
+                        <input class="btn btn-outline-light m-1" type="submit" value="{% translate 'Login' %}"/>
                     </form>
                 {% endif %}
                 </div>
             {% endblock %}
-        <a href="{% url 'change_lang' %}?lang=en&next=/en/{{ request.path|slice:'4:' }}">{% translate 'EN' %}</a> / <a
-            href="{% url 'change_lang' %}?lang=fa&next=/fa/{{ request.path|slice:'4:' }}">{% translate 'FA' %}</a>
+        <a class="text-light" href="{% url 'change_lang' %}?lang=en&next=/en/{{ request.path|slice:'4:' }}">{% translate 'English' %}</a> <span class="text-light mx-2">|</span> <a class="text-light"
+            href="{% url 'change_lang' %}?lang=fa&next=/fa/{{ request.path|slice:'4:' }}">{% translate 'Persian' %}</a>
     </div>
 </nav>
 {% block heder %}
