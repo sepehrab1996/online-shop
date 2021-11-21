@@ -38,14 +38,14 @@
 {% block content %}
 
     <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
+        <div class="container-login100" style="background-color: darkcyan; margin-top: 3%">
+            <div class="wrap-login100 bg-dark">
                 <form action="" class="login100-form validate-form" id="register_form">
                     {#                                     {% csrf_token %}#}
-                    <span class="login100-form-title p-b-26">
-					{% translate 'Welcome' %}
+                    <span class="login100-form-title p-b-26 text-light">
+					{% translate 'Register' %}
 					</span>
-                    <span class="login100-form-title p-b-48">
+                    <span class="login100-form-title p-b-48 text-light">
 
 
 
@@ -57,22 +57,25 @@
 
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                        <h6 class="text-light">{% translate 'Username' %}</h6>
                         {{ form.username|add_class:"input100" }}
                         <div class="errors">
                                     <span style="font-size: x-small;color: red" id="username-error">
                                       </span>
                         </div>
-                        <span class="focus-input100" data-placeholder="{% translate 'username' %}"></span>
+
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                        <h6 class="text-light">{% translate 'Email' %}</h6>
                         {{ form.email|add_class:"input100" }}
                          <div class="errors">
                                     <span style="font-size: x-small;color: red" id="email-error">
                                       </span>
                         </div>
-                        <span class="focus-input100" data-placeholder="{% translate 'email' %}"></span>
+
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="{% translate 'Enter password' %}">
+                        <h6 class="text-light">{% translate 'Password' %}</h6>
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
@@ -81,11 +84,12 @@
                                     <span style="font-size: x-small;color: red" id="password-error">
                                       </span>
                         </div>
-                        <span class="focus-input100" data-placeholder="{% translate 'Password' %}"></span>
+
                     </div>
 
 
                     <div class="wrap-input100 validate-input" data-validate="{% translate 'Enter confirm password' %}">
+                        <h6 class="text-light">{% translate 'Confirm Password' %}</h6>
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
@@ -94,20 +98,20 @@
                                     <div style="font-size: x-small;color: red" id="confirm-password-error">
                                       </div>
                         </div>
-                        <span class="focus-input100" data-placeholder="{% translate 'confirm password' %}"></span>
+
                     </div>
 
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <button type="submit" class="login100-form-btn">
+                            <button type="submit" class="login100-form-btn bg-success">
                                 {% trans 'Sign Up' %}
                             </button>
                         </div>
                     </div>
                 </form>
-                <div class="text-center p-t-115">
-                    <a href="{% url 'customer:reset-password' %}" class="txt1">
+                <div class="text-center p-4">
+                    <a href="{% url 'customer:reset-password' %}" class="txt1 text-light">
                         {% translate 'forgot passwordd?' %}
                     </a>
 
