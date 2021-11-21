@@ -11,11 +11,11 @@
 {% endblock %}
 {% block drop-drown %}{% endblock %}
 {% block content %}
-    <div class=" emp-profile" style="height: 300px">
+    <div class=" emp-profile bg-dark text-light" style="height: auto; margin-top: 4%; border-radius: 10px">
         <form id="edit_profile_form" enctype="multipart/form-data" method="post" class="form-group">
             {% csrf_token %}
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 mt-4">
                     <div class="profile-img ">
                         {% if user.image %}
                             <img id="preview" class="rounded-circle"
@@ -26,7 +26,7 @@
                                  src="/media/avatar.jpg/"
                                  alt=""/>
                         {% endif %}
-                        <div class="file btn btn-lg btn-primary"
+                        <div class="file btn btn-lg btn-outline-success bg-success text-light"
                              style="width:128px;background-color: cornflowerblue;border-radius: 100px;">
                             {% translate 'Change photo' %}
                             {{ form.image }}
@@ -34,15 +34,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9 ">
+                <div class="col-9 d-flex justify-content-center">
                     <div class="col-md-8 ">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row m-1">
-                                    <div class="col-md-3">
-                                        <label>{% translate 'username' %}</label>
+                                <div class="row m-3">
+                                    <div class="col-3">
+                                        <label class="text-success">{% translate 'username' %}</label>
                                     </div>
-                                    <div class="col-md-9 w-75">
+                                    <div class="col-md-9 w-75 d-flex justify-content-start">
                                         {{ form.username | add_class:'form-contorol' }}
                                          {% if form.username.errors %}
                                              <div class="errors">
@@ -56,27 +56,27 @@
                                     </div>
                                 </div>
 
-                                <div class="row m-1" style="margin-top: auto">
+                                <div class="row m-3" style="margin-top: auto">
                                     <div class="col-md-3">
-                                        <label>{% translate 'first name' %}</label>
+                                        <label class="text-success">{% translate 'first name' %}</label>
                                     </div>
-                                    <div class="col-md-9 w-75">
+                                    <div class="col-md-9 w-75 d-flex justify-content-start">
                                         {{ form.first_name | add_class:'form-contorol' }}
                                     </div>
                                 </div>
-                                <div class="row m-1">
+                                <div class="row m-3">
                                     <div class="col-md-3">
-                                        <label>{% translate 'last name' %}</label>
+                                        <label class="text-success">{% translate 'last name' %}</label>
                                     </div>
-                                    <div class="col-md-9 w-75">
+                                    <div class="col-md-9 w-75 d-flex justify-content-start">
                                         {{ form.last_name | add_class:'form-contorol' }}
                                     </div>
                                 </div>
-                                <div class="row m-1">
+                                <div class="row m-3">
                                     <div class="col-md-3">
-                                        <label>{% translate 'Email' %}</label>
+                                        <label class="text-success">{% translate 'Email' %}</label>
                                     </div>
-                                    <div class="col-md-9 w-75">
+                                    <div class="col-md-9 w-75 d-flex justify-content-start">
                                         {{ form.email | add_class:'input_edit' }}
                                          {% if form.email.errors %}
                                              <div class="errors">
@@ -90,10 +90,10 @@
                                     </div>
                                 </div>
 
-                                <div class="row m-1">
+                                <div class="row" style="margin-top: 15%; margin-left: 12%">
                                     <div class="col-md-3">
-                                        <button type="submit" class="btn  btn-primary form-control mr-5">
-                                            {% trans 'save' %}
+                                        <button type="submit" class="btn btn-outline-success form-control mr-5">
+                                            {% trans 'Save' %}
                                         </button>
                                     </div>
                                 </div>
