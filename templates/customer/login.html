@@ -39,14 +39,14 @@
 {% block content %}
 
     <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
+        <div class="container-login100" style="background-color: darkcyan; margin-top: -2%">
+            <div class="wrap-login100 bg-dark">
                 <form class="login100-form validate-form" method="post">
                     {% csrf_token %}
-                    <span class="login100-form-title p-b-26">
-					{% translate 'Welcome' %}
+                    <span class="login100-form-title p-b-26 text-light">
+					{% translate 'Login' %}
 					</span>
-                    <span class="login100-form-title p-b-48">
+                    <span class="login100-form-title p-b-48 text-light">
                     {% if form.non_field_errors %}
                         <div class="errors">
                         {% for error in form.non_field_errors %}
@@ -60,6 +60,7 @@
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                    <h6 class="text-light">{% translate 'Username' %}</h6>
                         {{ form.username|add_class:"input100" }}
                         {% if form.username.errors %}
                             <div class="errors">
@@ -70,9 +71,10 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <span class="focus-input100" data-placeholder="{% translate 'username' %}"></span>
+
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="{% translate 'Enter password' %}">
+                    <h6 class="text-light">{% translate 'Password' %}</h6>
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
@@ -86,29 +88,27 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <span class="focus-input100" data-placeholder="{% translate 'Password' %}"></span>
                     </div>
 
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
+                            <button class="login100-form-btn bg-success">
                                 {% translate 'Login' %}
                             </button>
                         </div>
                     </div>
 
-                    <div class="text-center p-t-115">
-						<span class="txt1">
+                    <div class="text-center p-4">
+						<span class="txt1 text-light">
 							{% translate 'Don’t have an account?' %}
 						</span>
-
-                        <a class="txt2" href="{% url 'customer:register' %}">
+                        <a class="txt2 text-light" href="{% url 'customer:register' %}">
                             {% trans 'Sign Up' %}
                         </a>
                         <div>
-                            <a href="{% url 'customer:reset-password' %}" class="txt1">
-                            {% translate 'forgot passwordd?' %}
+                            <a href="{% url 'customer:reset-password' %}" class="txt1 text-light">
+                            {% translate 'Forget password?' %}
                         </a>
                         </div>
                     </div>
