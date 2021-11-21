@@ -2,29 +2,16 @@
 {% load i18n %}
 {% block heder %}
     <!-- Header-->
-    <!-- slide show-->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/media/header_site.jpg" class="d-block w-100" alt="...">
-            </div>
-            {% for advertising in advertisings %}
-                <div class="carousel-item">
-                    <img src="{{ advertising.image.url }}" class="d-block w-100" alt="...">
-                </div>
-            {% endfor %}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+
+    <div class="jumbotron bg-success p-3" style="text-align: center">
+        <h1>Welcome to our shop</h1>
+        <h3 style="color: gold">See, Choose, Buy</h3>
     </div>
+
+
+    </body>
+    </html>
+
 
 
 
@@ -43,11 +30,11 @@
                 <!--  Products are located here-->
             </div>
 
-             <nav  id="results" aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <!-- button of pagination-->
-                    </ul>
-                </nav>
+            <nav id="results" aria-label="Page navigation example">
+                <ul class="pagination">
+                    <!-- button of pagination-->
+                </ul>
+            </nav>
         </div>
 
     </section>
