@@ -689,7 +689,7 @@ msgid "Actions"
 msgstr "عملیات"
 
 #: .\templates\orders\recent_orders.html:24
-msgid "countinue"
+msgid "continue"
 msgstr "ادامه فرآیند خرید"
 
 #: .\templates\products\category_products.html:84
