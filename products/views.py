@@ -8,7 +8,7 @@ from django.views import View
 from django.views.generic import DetailView
 
 from orders.forms import CartForm
-from products.models import Product, Advertising, Category
+from products.models import Product, Category
 
 
 def change_lang(request):
@@ -20,8 +20,7 @@ def change_lang(request):
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         products = Product.objects.all()
-        advertisings = Advertising.objects.all()
-        context = {'advertisings': advertisings, 'products': products}
+        context = {'products': products}
         return render(request, "products/index.html", context)
 
 
