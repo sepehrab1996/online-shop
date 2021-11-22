@@ -105,7 +105,7 @@
                 {% endif %}
                 </div>
             {% endblock %}
-        <a class="text-light ml-5"
+        <a class="text-light"
            href="{% url 'change_lang' %}?lang=en&next=/en/{{ request.path|slice:'4:' }}">{% translate 'English' %}</a>
         <span class="text-light mx-2">|</span> <a class="text-light"
                                                   href="{% url 'change_lang' %}?lang=fa&next=/fa/{{ request.path|slice:'4:' }}">{% translate 'Persian' %}</a>
