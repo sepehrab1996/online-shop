@@ -1,19 +1,20 @@
 {% extends 'base/base.html' %}
 {% load widget_tweaks %}
 {% load i18n %}
+{% load humanize %}
 {% load static %}
 {% block style.css %}
     <link href="{% static 'products/css/product_detail.css' %}" rel="stylesheet"/>
 {% endblock %}
 {% block content %}
     <div class="container mt-5 mb-5">
-        <div class="card">
+        <div class="card bg-dark" style="border-radius: 10px; border: 2px solid white;">
             <div class="row g-0">
-                <div class="col-md-6 border-end">
-                    <div class="d-flex flex-column justify-content-center">
+                <div class="col-md-6 border-end bg-dark">
+                    <div class="d-flex flex-column justify-content-center bg-dark">
                         <div class="main_image"><img src="{{ product.images.first.image.url }}" id="main_product_image"
                                                      width="350"></div>
-                        <div class="thumbnail_images">
+                        <div class="thumbnail_images bg-dark">
                             <ul id="thumbnail">
                                 {% for image in product.images.all %}
                                     <li><img onclick="changeImage(this)" src="{{ image.image.url }}" width="70">
@@ -23,25 +24,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="p-3 right-side">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h3>{{ product.name }}</h3> <span class="heart"><i
-                                class='bi bi-star'></i></span>
+                <div class="col-md-6 bg-dark" style="border-left: 2px solid white;">
+                    <div class="p-3 right-side bg-dark text-light">
+                        <div class="d-flex justify-content-center">
+                            <h2>{{ product.name }}</h2>
                         </div>
-                        <div class="mt-2 pr-3 content">
-                            <p>{{ product.description }}</p>
+                        <div class="mt-2 pr-3 content d-flex justify-content-center">
+                            <h6>{{ product.description }}</h6>
                         </div>
-                        <h3>{% translate 'price' %}: {{ product.price }} {% translate 'Rial' %}</h3>
-
-                        <div class="mt-5"><span class="fw-bold">{% translate 'Detail' %}</span>
+                        <h2 class="d-flex justify-content-center mt-4 text-warning">{% translate 'price' %}: {{ product.price|floatformat|intcomma }} {% translate 'Rial' %}</h2>
+                        <div class="d-flex justify-content-center mt-5"><span class="fw-bold" style="font-weight: bold; font-size: larger">{% translate 'Detail' %}</span></div>
+                        <div class="mt-3">
                             <div>
                                 <ul class="list-group">
                                     {% for attribute in product.attributes.all %}
 
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             {{ attribute.name }}
-                                            <span class="badge bg-primary rounded-pill">{{ attribute.values }}</span>
+                                            <span style="font-weight: bold">{{ attribute.values.0 }}</span>
                                         </li>
 
 
@@ -50,14 +50,14 @@
                             </div>
                         </div>
 
-                        <div class="buttons d-flex flex-row mt-5 gap-3">
-                            <form class="form-group" method="post" action="{% url 'orders:cart_add' product.id %}">
+                        <div class="buttons mt-5">
+                            <form class="form-group" style="padding-left: 25%" method="post" action="{% url 'orders:cart_add' product.id %}">
                                 {% csrf_token %}
-                                <button class="bg-danger" type="button" onclick="decrement()">-</button>
+                                <button class="bg-danger rounded" style="width: 12%" type="button" onclick="decrement()">-</button>
                                 {{ form.product_count | attr:'type:number'|attr:'style:text-align: center'|attr:'id:quantity'|attr:'min=0' }}
-                                <button class="bg-success" type="button" onclick="increment()">+</button>
+                                <button class="bg-success rounded" style="width: 12%" type="button" onclick="increment()">+</button>
                                         <button type="submit"
-                                                class="form-control w-50 btn btn-primary mt-2 ">{% translate 'ADD TO CART' %}</button>
+                                                class="form-control w-50 btn btn-outline-success mt-4" style="margin-left: 8.5%">{% translate 'ADD TO CART' %}</button>
 
                             </form>
                         </div>
