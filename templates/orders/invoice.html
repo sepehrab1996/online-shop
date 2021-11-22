@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load widget_tweaks %}
 {% load i18n %}
+{% load humanize %}
 {% load static %}
 {% load base_tags %}
 {% block style.css %}
@@ -8,33 +9,20 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container p-5">
+    <div class="container">
         <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-3 body-main">
-                    <div class="col-md-12">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 body-main bg-dark text-light mt-5" style="border-radius: 10px">
+                    <div class="col-md-12 bg-dark">
                         <div class="row">
-                            <div class="col-md-4"><img class="img" alt=""
-                                                       src="/media/invoice_cart.png"/>
-                            </div>
-                            <div class="col-md-8 text-right">
-                                <h4 style="color: #F81D2D;"><strong>{% translate 'MAKTAB SHARIF_53' %}</strong></h4>
-                                <p>{{ order.address.exact_address }}</p>
-                                <p>{{ order.id }}</p>
-                                <p>{{ order.customer.email }}</p>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h2>{% translate 'INVOICE' %}</h2>
-                                <h5>04854654101</h5>
+                            <div class="col-md-12 text-center text-light">
+                                <h2 class="text-success">{% translate 'INVOICE' %}</h2>
                             </div>
                         </div>
                         <br/>
                         <div>
-                            <table class="table">
-                                <thead>
+                            <table class="table text-light">
+                                <thead style="font-size: large;">
                                 <tr>
                                     <th>
                                         <p>{% translate 'Product' %}</p>
@@ -50,7 +38,7 @@
                                     </th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="font-size: large">
                                 {% for item in order.items.all %}
                                     <tr>
                                         <td class="col-md-4">{{ item.product.name }}</td>
@@ -64,26 +52,20 @@
                                 {% endfor %}
                                 <tr>
 
-                                    <td class="colspan=" >
-                                    <h4><strong>{% translate 'Total Amount' %}: </strong></h4>
-                                    <h4><strong>{% translate 'Discount' %}: </strong></h4>
+                                    <td class="colspan=">
+
+                                        <h4 class="text-danger mt-1 "><strong>{% translate 'Discount' %}: </strong></h4>
                                     </td>
                                     <td>
-                                        <h3><strong><i
-                                                class="fas fa-rupee-sign"> </i>{% total_price order.final_price order.discount %}
-                                        </strong></h3>
-                                        <h3><strong><i class="fas fa-rupee-sign"></i> {{ order.discount }}%</strong>
+                                        <h3 class="text-danger"><strong><i class="fas fa-rupee-sign"></i> {{ order.discount }}%</strong>
                                         </h3>
                                     </td>
-                                     <td>
-                                        <h3><strong><i
-                                                class="fas fa-rupee-sign"> </i>{% translate 'Rial' %}
-                                        </strong></h3>
-                                        <h3><strong><i class="fas fa-rupee-sign"></i>  </strong>
+                                    <td>
+                                        <h3><strong><i class="fas fa-rupee-sign"></i> </strong>
                                         </h3>
                                     </td>
                                 </tr>
-                                <tr style="color: #F81D2D;">
+                                <tr style="color: #F81D2D;" class="text-warning">
                                     <td class="text-right">
                                         <h4><strong>{% translate 'Payable Amount' %}:</strong></h4>
                                     </td>
@@ -92,16 +74,16 @@
                                                        area-hidden="true"></i> {{ order.final_price }}
                                         </strong></h4>
                                     </td>
-                                    <td> <h5>{% translate 'Rial' %}</h5></td>
+                                    <td><h5 class="mt-1">{% translate 'Rial' %}</h5></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 d-flex justify-content-center">
                                 <a href="{% url 'orders:payment' order.id %}"
-                                   class="btn btn-primary cart-btn-transform m-3 w-25"
-                                   data-abc="true" style="float: inline-end">{% translate 'Payment' %}</a>
+                                   class="btn btn-outline-success cart-btn-transform m-3 w-25"
+                                   data-abc="true">{% translate 'Payment' %}</a>
                             </div>
                         </div>
                     </div>
