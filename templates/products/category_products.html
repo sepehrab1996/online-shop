@@ -1,17 +1,17 @@
 {% extends 'base/base.html' %}
 {% load i18n %}
-
+{% load humanize %}
 
 
 {% block content %}
     <!-- Section-->
     <!-- display of products-->
-    <section class="py-5">
+    <section class="py-3">
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
                 {% for product in category.products.all %}
                     <div class="col mb-5">
-                        <div class="card h-100 ">
+                        <div class="card h-100 text-light" style="border-radius: 10px">
                             <!-- Product images-->
                             <div id="{{ product.name }}" class="carousel slide " data-bs-ride="carousel">
                                 <div class="carousel-inner">
@@ -24,33 +24,24 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#{{ product.name }}"
-                                        data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                        data-bs-target="#{{ product.name }}"
-                                        data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+
                             </div>
                             {#                        <img class="card-img-top" src="{{ product.image.urls }}" alt="..."/>#}
                             <!-- Product details-->
-                            <div class="card-body p-4">
+                            <div class="card-body bg-dark ">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ product.name }}</h5>
-                                    <!-- Product price-->
-                                    {{ product.price }} {% translate 'Rial' %}<br>
+
+
 
                                 </div>
                             </div>
                             <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-dark d-flex justify-content-center text-warning" style="border-bottom-left-radius: 10px; border-bottom-right-radius:10px; ">
                                <a href="{% url 'products:product_detail' product.id %}"  class="stretched-link"></a>
+                                <!-- Product price-->
+                                {{ product.price|floatformat|intcomma }} <span class="text-danger ml-2">{% translate 'Rial' %}</span>
                             </div>
                         </div>
                     </div>
