@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load widget_tweaks %}
 {% load i18n %}
+{% load humanize %}
 {% load static %}
 {% block style.css %}
     <link href="{% static 'orders/css/cart_detail.css' %}" rel="stylesheet"/>
@@ -29,22 +30,20 @@
             </div>
 
         {% else %}
-            <section class="shopping-cart dark">
+            <section class="shopping-cart dark" style="background-color: darkcyan">
                 <div class="container">
                     <div class="block-heading">
-                        <h2>{% translate "MAKTABSHARIF-53 SHOP" %}</h2>
-                        <h3>{% translate 'Thank you for your trust' %}</h3>
                     </div>
                     <div class="content">
                         <div class="row">
-                            <div class="col-md-12 col-lg-8">
+                            <div class="col-md-12 col-lg-8 bg-dark text-light">
                                 {% for item in cart %}
                                     <div class="items">
                                         <div class="product">
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <a href="{% url 'products:product_detail' item.product.id %}">
-                                                        <img class="img-fluid mx-auto d-block image"
+                                                        <img class="img-fluid mx-auto d-block image rounded"
                                                              src="{{ item.product.images.first.image.url }}"></a>
                                                 </div>
                                                 <div class="col-md-8">
@@ -52,17 +51,17 @@
                                                         <div class="row">
                                                             <div class="col-md-5 product-name">
                                                                 <div class="product-name">
-                                                                    <p>{{ item.product.name }}</p>
+                                                                    <p class="">{{ item.product.name }}</p>
                                                                     {% for attribute in item.product.attributes.all %}
                                                                         <div class="product-info">
                                                                             <div>{{ attribute.name }}<span
-                                                                                    class="value">{{ attribute.values }}</span>
+                                                                                    class="value ml-2">{{ attribute.values.0 }}</span>
                                                                             </div>
-                                                                            <span>{{ item.product.price }}{% translate 'Rial' %}</span>
+                                                                            <span class="text-warning">{{ item.product.price|floatformat|intcomma }}&nbsp;&nbsp;{% translate 'Rial' %}</span>
                                                                         </div>
                                                                     {% endfor %}
                                                                 </div>
-                                                                <a class="btn btn-outline-danger" type="submit"
+                                                                <a class="btn btn-outline-danger ml-5 mt-2" type="submit"
                                                                    href="{% url 'orders:cart_remove' item.product.id %}">{% translate 'Remove' %}</a>
                                                             </div>
                                                             <div class="col-md-4 quantity">
@@ -72,12 +71,12 @@
                                                                     <label for="quantity">{% translate 'Quantity' %}:</label>
                                                                     {{ item.update_count_form.product_count | attr:'type:number'|attr:'id:quantity'| add_class:'form-control quantity-input' }}
                                                                     {{ item.update_count_form.update }}
-                                                                    <input class="btn btn-outline-success" type="submit"
+                                                                    <input class="btn btn-outline-success" style="margin-top: 15%" type="submit"
                                                                            value="{% translate 'Update' %}">
                                                                 </form>
                                                             </div>
-                                                            <div class="col-md-3 price">
-                                                                <span>{{ item.total_price }}{% translate 'Rial' %}</span>
+                                                            <div class="col-md-3 price mt-4">
+                                                                <span class="text-warning">{{ item.total_price|floatformat|intcomma }}&nbsp{% translate 'Rial' %}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,13 +87,13 @@
                                 {% endfor %}
                             </div>
 
-                            <div class="col-md-12 col-lg-4">
-                                <div class="summary">
-                                    <h3>{% translate 'invoice' %}</h3>
+                            <div class="col-md-12 col-lg-4 bg-dark text-light">
+                                <div class="summary bg-dark text-light" style="border-left: 2px solid white">
+                                    <h1 class="text-success" style="text-align: center">{% translate 'invoice' %}</h1>
                                     {% if user.is_authenticated %}
                                         <div class="summary-item row"><span
                                                 class="text col-6">{% translate 'total price' %}:</span><span
-                                                class="price col-6">{{ cart.get_cart_total_price }}</span></div>
+                                                class="price col-6 text-warning">{{ cart.get_cart_total_price|floatformat|intcomma }}</span></div>
                                         <div class="summary-item row"><span
                                                 class="text col-7"
                                                 id="discount_text">{% translate 'discount' %}: </span>&nbsp<span
@@ -115,7 +114,7 @@
                                                    placeholder="{% translate 'Enter discount code' %}">
                                             <input type="hidden" id="user_id" value="{{ user.id }}">
                                             <button type="submit"
-                                                    class="btn btn-outline-primary form-control ">{% translate 'Apply a discount code' %}</button>
+                                                    class="btn btn-outline-success form-control ">{% translate 'Apply a discount code' %}</button>
                                         </form>
 
                                     {% else %}
@@ -134,11 +133,11 @@
                                                             value="{{ address.id }}">{{ address.exact_address }}</option>
                                                 {% endfor %}
                                             </select>
-                                            <a type="submit" href="" class="btn btn-outline-primary form-control"
+                                            <a type="submit" href="" class="btn btn-outline-success form-control mt-4"
                                                data-toggle="modal"
                                                data-target="#modal-add-address">{% translate 'Add Address' %}</a>
                                             <button type="submit"
-                                                    class="btn btn-primary btn-lg btn-block mt-5">{% translate 'Order' %}</button>
+                                                    class="btn btn-outline-success btn-lg btn-block mt-5">{% translate 'Order' %}</button>
                                         </form>
 
                                     {% else %}
