@@ -64,13 +64,13 @@ class Product(models.Model):
         return f"{self.name}"
 
 
-class Advertising(models.Model):
-    title = TranslatedField(models.CharField(_('title'), max_length=250))
-    image = models.ImageField(_('image'), upload_to='products/advertising/%Y/%m/%d/', max_length=500, )
-
-    class Meta:
-        verbose_name = _("Advertising")
-        verbose_name_plural = _("Advertisings")
-
-    def __str__(self):
-        return f"{self.title}"
+# class Advertising(models.Model):
+#     title = TranslatedField(models.CharField(_('title'), max_length=250))
+#     image = models.ImageField(_('image'), upload_to='products/advertising/%Y/%m/%d/', max_length=500, )
+#
+#     class Meta:
+#         verbose_name = _("Advertising")
+#         verbose_name_plural = _("Advertisings")
+#
+#     def __str__(self):
+#         return f"{self.title}"
