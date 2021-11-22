@@ -4,7 +4,6 @@ import pytz
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from customer.models import Customer, Address
-from orders.generate_code import random_string
 from products.models import Product
 from translated_fields import TranslatedField
 
@@ -14,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class DiscountCode(models.Model):
-    code = models.CharField(_("discount code"), max_length=100, unique=True, default=random_string)
+    code = models.CharField(_("discount code"), max_length=100, unique=True)
     valid_from = models.DateTimeField(_("valid from"))
     valid_to = models.DateTimeField(_("valid to"))
     discount = models.IntegerField(_("discount"), validators=[MinValueValidator(0), MaxValueValidator(100)])
