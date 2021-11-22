@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'products.apps.ProductsConfig',
     'orders.apps.OrdersConfig',
@@ -163,4 +164,3 @@ REST_FRAMEWORK = {
 }
 
 CART_SESSION_ID = 'cart'
-
