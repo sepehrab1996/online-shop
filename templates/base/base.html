@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>{% block title %}{% translate "MAKTABSHARIF-53 SHOP" %}{% endblock %}</title>
+    <title>{% block title %}Our shop{% endblock %}</title>
     {% block style.css %}{% endblock %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
           integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -31,7 +31,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-dark p-0">
     <div class="container">
-        <a class="navbar-brand bi bi-house-door text-light" style="font-size: 70px" aria-current="page"
+        <a class="navbar-brand bi bi-house-door text-success" style="font-size: 70px" aria-current="page"
            href="{% url 'products:index' %}">{% translate "" %}</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -41,15 +41,15 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <!--Search-->
-                <div>
-                    <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="{% translate 'Search' %}"
-                               aria-label="{% translate 'Search' %}"
-                               aria-describedby="search-addon"/>
-                        <button type="button"
-                                class="btn btn-outline-light ml-1 rounded">{% translate 'Search' %}</button>
-                    </div>
-                </div>
+{#                <div>#}
+{#                    <div class="input-group">#}
+{#                        <input type="search" class="form-control rounded" placeholder="{% translate 'Search' %}"#}
+{#                               aria-label="{% translate 'Search' %}"#}
+{#                               aria-describedby="search-addon"/>#}
+{#                        <button type="button"#}
+{#                                class="btn btn-outline-light ml-1 rounded">{% translate 'Search' %}</button>#}
+{#                    </div>#}
+{#                </div>#}
             </ul>
 
             {% if user.is_authenticated %}
